@@ -97,4 +97,45 @@ body {
         transform: rotate(360deg);
     }
 }
+/* Estilos para telas menores que 768px */
+@media screen and (max-width: 768px) {
+    .form-container {
+        width: 80%;
+    }
+
+    .form-container .formulario input,
+    .form-container .formulario select {
+        width: 100%;
+    }
+}
+
+/* Estilos para telas menores que 576px */
+@media screen and (max-width: 576px) {
+    .form-container {
+        width: 90%;
+        padding: 7px;
+    }
+
+    .form-container .formulario input,
+    .form-container .formulario select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .form-container .formulario button {
+        padding: 8px;
+        font-size: 16px;
+    }
+
+    .form-container .formulario .form-label,
+    #erro_nome,
+    #erro_nome_empresa,
+    #erro_canal,
+    #erro_empreendimento,
+    #erro_telefone,
+    #erro_email {
+        font-size: 10px;
+    }
+}
+
 
