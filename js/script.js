@@ -102,18 +102,32 @@ async function enviarSalesforce() {
     let origem = document.getElementById("select_origem").value;
     let tipoPessoa = document.getElementById("select_tipo_pessoa").value;
     let idTipoPessoa = tipoPessoa === "Fisica" ? "012Dw0000001h2rIAA" : "012Dw0000001h2mIAA";
+    let loading = document.getElementById("carregamento");
+
+
+    loading.style.display = "block";
 
     if (!validarCampos([nome, email, empresa, canal, empreendimento, telefone])) {
-        Swal.fire({
-            title: '<span style="color: white">Ops!</span>',
-            html: '<span style="color: white">Por favor, preencha todos os campos corretamente.</span>',
-            icon: 'error',
-            confirmButtonColor: '#F57A45',
-            background: '#282828',
-            confirmButtonText: 'Entendi'
-        });
+      
+        loading.style.display = "block";
+    
+        setTimeout(() => {
+            loading.style.display = "none";
+    
+            Swal.fire({
+                title: '<span style="color: white">Ops!</span>',
+                html: '<span style="color: white">Por favor, preencha todos os campos corretamente.</span>',
+                icon: 'error',
+                confirmButtonColor: '#F57A45',
+                background: '#282828',
+                confirmButtonText: 'Entendi'
+            });
+        }, 3000); 
+    
+
         return;
     }
+    
     
     var data = {
         "Email": email.value,
@@ -138,11 +152,12 @@ async function enviarSalesforce() {
         body: JSON.stringify(data),
         redirect: 'follow'
     };
-
     try {
         const response = await fetch("https://youinc--developer.sandbox.my.salesforce.com/services/apexrest/Lead/", requestOptions);
         if (response.ok) {
-            Swal.fire({
+            loading.style.display = "none";
+    
+            const swalResponse = await Swal.fire({
                 title: '<span style="color: white">Cadastro realizado!</span>',
                 html: '<span style="color: white">Seu cadastro foi realizado com sucesso.</span>',
                 icon: 'success',
@@ -150,8 +165,11 @@ async function enviarSalesforce() {
                 background: '#282828',
                 confirmButtonText: 'Entendi'
             });
-            const result = await response.text();
-            console.log(result);
+    
+            if (swalResponse.isConfirmed) {
+                const result = await response.text();
+                console.log(result);
+            }
         } else if (response.status === 400) {
             Swal.fire({
                 title: '<span style="color: white">Ops!</span>',
@@ -193,5 +211,10 @@ async function enviarSalesforce() {
             confirmButtonText: 'Entendi'
         });
         console.error('Erro:', error);
+    } finally {
+        setTimeout(() => {
+            loading.style.display = "none";
+        }, 5000); 
     }
 }
+
