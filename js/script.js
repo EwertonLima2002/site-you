@@ -91,11 +91,7 @@ function validarCampos(campos) {
     }
     return true;
 }
-async function requisitarTokenSalesforce() {
-console.log("Requisitando token...");
-}
-
-function enviarSalesforce() {
+async function enviarSalesforce() {
     let nome = document.getElementById("input_nome");
     let email = document.getElementById("input_email");
     let empresa = document.getElementById("input_empresa");
@@ -116,6 +112,7 @@ function enviarSalesforce() {
         });
         return;
     }
+    
     var data = {
         "Email": email.value,
         "LastName": nome.value,
@@ -126,24 +123,72 @@ function enviarSalesforce() {
         "MobilePhone": telefone.value,
         "Status": status
     };
-    
 
     var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQEPZsisn8QggGuuDenhrjIZU1511fHZzDIC_k_.XX7EDsBQXh4gVRA7OZZ6e_LLduXLUa0GKzViqk1tODaMA995wtuPr");
-myHeaders.append("Cookie", "BrowserId=LgYoZQ1DEe-Ym_-7cCSG1A; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1");
-myHeaders.append("Content-Type", "application/json");
+    myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQH8JtY1hzf23AD6RMvNvdh1Ianb.qASf3ok306JMnjGUgURcDoHYA3zUsUV464v1u7HQGDimiyyARIKzelGNPTBBndPx");
+    myHeaders.append("Cookie", "BrowserId=LgYoZQ1DEe-Ym_-7cCSG1A; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1");
+    myHeaders.append("Content-Type", "application/json");
 
-var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: JSON.stringify(data),
-    redirect: 'follow'
-  };
-  
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: JSON.stringify(data),
+        redirect: 'follow'
+    };
 
-fetch("https://youinc--developer.sandbox.my.salesforce.com/services/apexrest/Lead/", requestOptions)
-  .then(response => response.text())
-  .then(result => console.log(result))
-  .catch(error => console.log('error', error));
-    
+    try {
+        const response = await fetch("https://youinc--developer.sandbox.my.salesforce.com/services/apexrest/Lead/", requestOptions);
+        if (response.ok) {
+            Swal.fire({
+                title: '<span style="color: white">Cadastro realizado!</span>',
+                html: '<span style="color: white">Seu cadastro foi realizado com sucesso.</span>',
+                icon: 'success',
+                confirmButtonColor: '#F57A45',
+                background: '#282828',
+                confirmButtonText: 'Entendi'
+            });
+            const result = await response.text();
+            console.log(result);
+        } else if (response.status === 400) {
+            Swal.fire({
+                title: '<span style="color: white">Ops!</span>',
+                html: '<span style="color: white">Ocorreu um erro ao realizar o cadastro.</span>',
+                icon: 'error',
+                confirmButtonColor: '#F57A45',
+                background: '#282828',
+                confirmButtonText: 'Entendi'
+            });
+            throw new Error('Erro 400: Solicitação inválida');
+        } else if (response.status === 200) {
+            const result = await response.text();
+            Swal.fire({
+                title: '<span style="color: white">Lead existente!</span>',
+                html: '<span style="color: white">' + result + '</span>',
+                icon: 'info',
+                confirmButtonColor: '#F57A45',
+                background: '#282828',
+                confirmButtonText: 'Entendi'
+            });
+        } else {
+            Swal.fire({
+                title: '<span style="color: white">Ops!</span>',
+                html: '<span style="color: white">Ocorreu um erro ao realizar o cadastro.</span>',
+                icon: 'error',
+                confirmButtonColor: '#F57A45',
+                background: '#282828',
+                confirmButtonText: 'Entendi'
+            });
+            throw new Error('Erro ' + response.status + ': ' + response.statusText);
+        }
+    } catch (error) {
+        Swal.fire({
+            title: '<span style="color: white">Ops!</span>',
+            html: '<span style="color: white">Ocorreu um erro ao realizar o cadastro.</span>',
+            icon: 'error',
+            confirmButtonColor: '#F57A45',
+            background: '#282828',
+            confirmButtonText: 'Entendi'
+        });
+        console.error('Erro:', error);
+    }
 }
