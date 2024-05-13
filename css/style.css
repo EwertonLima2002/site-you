@@ -1,0 +1,65 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #282828; /* Cinza Escuro */
+}
+
+.form-container {
+    width: 500px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #E5E5E5; /* Cinza Claro */
+}
+
+.form-container img {
+    display: block;
+    margin: 0 auto 20px;
+    width: 100px;
+    height: auto;
+}
+
+.form-container .formulario input,
+.form-container .formulario select {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    box-sizing: border-box;
+}
+
+.form-container .formulario button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #F57A45; /* Laranja */
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.form-container .formulario .form-label {
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: left;
+}
+#erro_nome  , #erro_nome_empresa , #erro_canal , #erro_empreendimento , #erro_telefone , #erro_email{
+    font-size: 12px;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    text-align: left;
+}   

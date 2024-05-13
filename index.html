@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>You Inc Cadastro de Leads</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <script src="js/script.js"></script>
+    <link
+      rel="icon"
+      href="assents/Logo App You.png"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body onload="requisitarTokenSalesforce()">
+    <div class="form-container">
+      <img src="assents/YOU_logo_Login.png" alt="Logo" />
+      <div class="formulario">
+        <input
+          type="text"
+          id="input_nome"
+          name="input_nome"
+          placeholder="Nome"
+          onkeyup="validarNome()"
+        />
+        <p id="erro_nome" style="color: red"></p>
+        <input
+        type="email"
+        id="input_email"
+        name="param1"
+        placeholder="Email"
+        onkeyup="validarEmail()">
+      <p id="erro_email" style="color: red"></p>
+        <input
+          type="text"
+          id="input_empresa"
+          name="param2"
+          placeholder="Empresa"
+          onkeyup="validarNomeEmpresa()"
+        />
+   
+        <p id="erro_nome_empresa" style="color: red"></p>
+        <select id="select_origem">
+            <option value="">Selecione a origem do lead</option>
+            <option value="Outdoor">Outdoor</option>
+            <option value="Rádio">Rádio</option>
+            <option value="Televisão">Televisão</option>
+            <option value="Instagram">Instagram</option>
+            <option value="Publicações">Publicações</option>
+            <option value="Twitter">Twitter</option>
+            <option value="FacebookAds">Facebook Ads</option>
+            <option value="Wi-Fi">WiFi</option>
+            <option value="SiteYou">Site You</option>
+            <option value="LandingPage">Landing Page</option>
+            <option value="TikTok">TikTok</option>
+            <option value="YouTube">YouTube</option>
+            <option value="Tapume">Tapume</option>
+            <option value="AnuncioDeLoja">Anúncio de Loja</option>
+          </select>
+          <select id="input_canal">
+            <option value="">Selecione um canal de atendimento</option>
+            <option value="Fale conosco">Fale conosco</option>
+            <option value="Chat">Chat</option>
+            <option value="Telefone">Telefone</option>
+            <option value="Loja">Loja</option>
+            <option value="Stand">Stand</option>
+            <option value="WhatsApp">WhatsApp</option>
+          </select>
+          
+        <p id="erro_canal" style="color: red"></p>
+        <input
+          id="input_empreendimento"
+          placeholder="Empreendimento de Interesse"
+          onkeyup="validarEmpreendimentoInteresse()"
+        />
+        <p id="erro_empreendimento" style="color: red"></p>
+        <input type="number" id="input_telefone" placeholder="Telefone Celular" onkeyup="validarTelefone()" />
+        <p id="erro_telefone" style="color: red"></p>
+        <select id="select_status">
+            <option value="">Selecione o status do lead</option>
+            <option value="Descartado">Descartado</option>
+            <option value="LeadPerdido">Lead Perdido (Não Trabalhado)</option>
+            <option value="Novo">Novo</option>
+            <option value="Nutrindo">Nutrindo</option>
+            <option value="TentativaDeContato">Tentativa de Contato</option>
+            <option value="ContatoRealizado">Contato Realizado</option>
+            <option value="AgendamentoDeVisita">Agendamento de Visita</option>
+            <option value="Qualificação">Qualificação</option>
+            <option value="Conversão">Conversão</option>
+          </select>
+          
+        <button type="submit" onclick="enviarSalesforce()">Enviar</button>
+        </div>
+    </div>
+  </body>
+</html>
