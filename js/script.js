@@ -100,6 +100,8 @@ async function enviarSalesforce() {
     let telefone = document.getElementById("input_telefone");
     let status = document.getElementById("select_status").value;
     let origem = document.getElementById("select_origem").value;
+    let tipoPessoa = document.getElementById("select_tipo_pessoa").value;
+    let idTipoPessoa = tipoPessoa === "Fisica" ? "012Dw0000001h2rIAA" : "012Dw0000001h2mIAA";
 
     if (!validarCampos([nome, email, empresa, canal, empreendimento, telefone])) {
         Swal.fire({
@@ -121,7 +123,8 @@ async function enviarSalesforce() {
         "CanalAtendimento__c": canal.value,
         "EmpreendimentoInteresse__c": empreendimento.value,
         "MobilePhone": telefone.value,
-        "Status": status
+        "Status": status,
+        "RecordTypeId" : idTipoPessoa
     };
 
     var myHeaders = new Headers();
