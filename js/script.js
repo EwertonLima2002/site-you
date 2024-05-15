@@ -142,7 +142,7 @@ async function enviarSalesforce() {
     };
 
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQH8JtY1hzf23AD6RMvNvdh1Ianb.qASf3ok306JMnjGUgURcDoHYA3zUsUV464v1u7HQGDimiyyARIKzelGNPTBBndPx");
+    myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQBo46eNf82GcuUz1n2_icelcfhBbGAQXMZA1b4rvKHTws7IAasReia_D05gF7wysK6vgHj_g.aabh4_SzkSmmNUSVWVv");
     myHeaders.append("Cookie", "BrowserId=LgYoZQ1DEe-Ym_-7cCSG1A; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1");
     myHeaders.append("Content-Type", "application/json");
 
@@ -201,7 +201,8 @@ async function enviarSalesforce() {
             });
             throw new Error('Erro ' + response.status + ': ' + response.statusText);
         }
-    } catch (error) {
+    }
+     catch (error) {
         Swal.fire({
             title: '<span style="color: white">Ops!</span>',
             html: '<span style="color: white">Ocorreu um erro ao realizar o cadastro.</span>',
