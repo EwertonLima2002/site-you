@@ -142,7 +142,7 @@ async function enviarSalesforce() {
     };
 
     var myHeaders = new Headers();
-    myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQBo46eNf82GcuUz1n2_icelcfhBbGAQXMZA1b4rvKHTws7IAasReia_D05gF7wysK6vgHj_g.aabh4_SzkSmmNUSVWVv");
+    myHeaders.append("Authorization", "Bearer 00DDw000005FDf7!AQ8AQOgSiWZDsUY6yj5tqmmOZnn58gAbICJ1Mbh0KRd0ekgJuEnUDpbEwkmJPR3X3GfSLaKLbFe1AO0WBj0uROBk2PFSHnmy");
     myHeaders.append("Cookie", "BrowserId=LgYoZQ1DEe-Ym_-7cCSG1A; CookieConsentPolicy=0:1; LSKey-c$CookieConsentPolicy=0:1");
     myHeaders.append("Content-Type", "application/json");
 
